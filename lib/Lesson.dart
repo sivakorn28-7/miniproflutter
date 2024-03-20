@@ -149,13 +149,30 @@ class _MyHomePageState extends State<Lesson> {
                       context,
                       MaterialPageRoute(builder: (context) =>Social01()),
                       );
-                    }
-                    else if(_selectedLevel == 'มัธยมปลาย' && _selectedSubject == 'ภาษาไทย'){
+                    }else if(_selectedLevel == 'มัธยมปลาย' && _selectedSubject == 'ภาษาไทย'){
                       Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) =>Thai01()),
                       );
-                    }
+                    }else if (_selectedLevel == 'มัธยมต้น') {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: Text('แจ้งเตือน'),
+                        content: Text('ยังไม่มีเนื้อหาที่เกี่ยวข้อง'),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: Text('ตกลง'),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                }
                 },
                   child: Text('บทเรียนที่ 1'),
                   style: ElevatedButton.styleFrom(
@@ -196,7 +213,25 @@ class _MyHomePageState extends State<Lesson> {
                       context,
                       MaterialPageRoute(builder: (context) =>Thai02()),
                       );
-                    }
+                    }else if (_selectedLevel == 'มัธยมต้น') {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: Text('แจ้งเตือน'),
+                        content: Text('ยังไม่มีเนื้อหาที่เกี่ยวข้อง'),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: Text('ตกลง'),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                }
                 },
                   child: Text('บทเรียนที่ 2'),
                   style: ElevatedButton.styleFrom(
@@ -237,7 +272,25 @@ class _MyHomePageState extends State<Lesson> {
                       context,
                       MaterialPageRoute(builder: (context) =>Thai03()),
                       );
-                    }
+                    }else if (_selectedLevel == 'มัธยมต้น') {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: Text('แจ้งเตือน'),
+                        content: Text('ยังไม่มีเนื้อหาที่เกี่ยวข้อง'),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: Text('ตกลง'),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                }
                 },
                   child: Text('บทเรียนที่ 3'),
                   style: ElevatedButton.styleFrom(

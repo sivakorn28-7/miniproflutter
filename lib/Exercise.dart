@@ -154,7 +154,25 @@ class _MyHomePageState extends State<Exercise> {
                       context,
                       MaterialPageRoute(builder: (context) =>QTh01()),
                       );
-                    }
+                    }else if (_selectedLevel == 'มัธยมต้น') {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: Text('แจ้งเตือน'),
+                        content: Text('ยังไม่มีเนื้อหาที่เกี่ยวข้อง'),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: Text('ตกลง'),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                }
                 },
                   child: Text('แบบฝึกหัดบทที่ 1'),
                   style: ElevatedButton.styleFrom(
@@ -195,7 +213,25 @@ class _MyHomePageState extends State<Exercise> {
                       context,
                       MaterialPageRoute(builder: (context) =>QTh02()),
                       );
-                    }
+                    }else if (_selectedLevel == 'มัธยมต้น') {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: Text('แจ้งเตือน'),
+                        content: Text('ยังไม่มีเนื้อหาที่เกี่ยวข้อง'),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: Text('ตกลง'),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                }
                 },
                   child: Text('แบบฝึกหัดบทที่ 2'),
                   style: ElevatedButton.styleFrom(
@@ -236,7 +272,25 @@ class _MyHomePageState extends State<Exercise> {
                       context,
                       MaterialPageRoute(builder: (context) =>QTh03()),
                       );
-                    }
+                    }else if (_selectedLevel == 'มัธยมต้น') {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: Text('แจ้งเตือน'),
+                        content: Text('ยังไม่มีเนื้อหาที่เกี่ยวข้อง'),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: Text('ตกลง'),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                }
                 },
                   child: Text('แบบฝึกหัดบทที่ 3'),
                   style: ElevatedButton.styleFrom(

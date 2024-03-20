@@ -1,7 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:minipro/Register.dart';
 import 'package:minipro/main.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async {
+  // WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp();
   runApp(LoginApp());
 }
 
@@ -20,6 +25,9 @@ class LoginApp extends StatelessWidget {
 }
 
 class LoginPage extends StatelessWidget {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,13 +47,15 @@ class LoginPage extends StatelessWidget {
             ),
             SizedBox(height: 20),
             TextFormField(
+              controller: emailController,
               decoration: InputDecoration(
-                labelText: 'Username',
+                labelText: 'Email',
                 border: OutlineInputBorder(),
               ),
             ),
             SizedBox(height: 20),
             TextFormField(
+              controller: passwordController,
               obscureText: true,
               decoration: InputDecoration(
                 labelText: 'Password',
@@ -55,13 +65,35 @@ class LoginPage extends StatelessWidget {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-              // Add your login logic here
-              // For demonstration purposes, let's assume successful login and navigate to main.dart
-              Navigator.push(
-                context,
-              MaterialPageRoute(builder: (context) => LessonPage()), // เปลี่ยนเป็น MyApp() หรือหน้าหลักของแอพพลิเคชันของคุณ
-            );
-            },
+                  String email = emailController.text.trim();
+                  String password = passwordController.text.trim();
+
+                if (email.isEmpty || password.isEmpty) {
+                  showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: Text('แจ้งเตือน'),
+                        content: Text('กรุณากรอกข้อมูลให้ครบ'),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: Text('ตกลง'),
+                            ),
+                          ],
+                      );
+                  },
+                  );
+              } else {
+                  // FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
+                  Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LessonPage()),
+                  );
+              }
+              },
               child: Text('Login'),
             ),
             SizedBox(height: 20),
@@ -69,7 +101,7 @@ class LoginPage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => RegisterPage()),
+                  MaterialPageRoute(builder: (context) => RegisterApp()),
                 );
               },
               child: Text(
@@ -87,88 +119,88 @@ class LoginPage extends StatelessWidget {
   }
 }
 
-class RegisterPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Register'),
-      ),
-      body: Container(
-        padding: EdgeInsets.all(20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Text(
-              'Register',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 20),
-            TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Name',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 20),
-            TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Surname',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 20),
-            TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Username',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 20),
-            TextFormField(
-              obscureText: true,
-              decoration: InputDecoration(
-                labelText: 'Password',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 20),
-            TextFormField(
-              obscureText: true,
-              decoration: InputDecoration(
-                labelText: 'Submit Password',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 20),
-            TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Email',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 20),
-            TextFormField(
-              decoration: InputDecoration(
-                labelText: 'PhoneNumber',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                // Add your registration logic here
-              },
-              child: Text('Register'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+// class RegisterPage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('Register'),
+//       ),
+//       body: Container(
+//         padding: EdgeInsets.all(20),
+//         child: Column(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           crossAxisAlignment: CrossAxisAlignment.stretch,
+//           children: <Widget>[
+//             Text(
+//               'Register',
+//               textAlign: TextAlign.center,
+//               style: TextStyle(
+//                 fontSize: 30,
+//                 fontWeight: FontWeight.bold,
+//               ),
+//             ),
+//             SizedBox(height: 20),
+//             TextFormField(
+//               decoration: InputDecoration(
+//                 labelText: 'Name',
+//                 border: OutlineInputBorder(),
+//               ),
+//             ),
+//             SizedBox(height: 20),
+//             TextFormField(
+//               decoration: InputDecoration(
+//                 labelText: 'Surname',
+//                 border: OutlineInputBorder(),
+//               ),
+//             ),
+//             SizedBox(height: 20),
+//             TextFormField(
+//               decoration: InputDecoration(
+//                 labelText: 'Username',
+//                 border: OutlineInputBorder(),
+//               ),
+//             ),
+//             SizedBox(height: 20),
+//             TextFormField(
+//               obscureText: true,
+//               decoration: InputDecoration(
+//                 labelText: 'Password',
+//                 border: OutlineInputBorder(),
+//               ),
+//             ),
+//             SizedBox(height: 20),
+//             TextFormField(
+//               obscureText: true,
+//               decoration: InputDecoration(
+//                 labelText: 'Submit Password',
+//                 border: OutlineInputBorder(),
+//               ),
+//             ),
+//             SizedBox(height: 20),
+//             TextFormField(
+//               decoration: InputDecoration(
+//                 labelText: 'Email',
+//                 border: OutlineInputBorder(),
+//               ),
+//             ),
+//             SizedBox(height: 20),
+//             TextFormField(
+//               decoration: InputDecoration(
+//                 labelText: 'PhoneNumber',
+//                 border: OutlineInputBorder(),
+//               ),
+//             ),
+//             SizedBox(height: 20),
+//             ElevatedButton(
+//               onPressed: () {
+//                 // Add your registration logic here
+//               },
+//               child: Text('Register'),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }

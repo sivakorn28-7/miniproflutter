@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:minipro/main.dart';
 
 void main() {
   runApp(EditApp());
@@ -19,6 +20,14 @@ class EditApp extends StatelessWidget {
 }
 
 class Edit extends StatelessWidget {
+
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController surnameController = TextEditingController();
+  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController phoneNumberController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,6 +47,7 @@ class Edit extends StatelessWidget {
             ),
             SizedBox(height: 20),
             TextFormField(
+               controller: nameController,
                decoration: InputDecoration(
                   labelText: 'Name',
                   border: OutlineInputBorder(),
@@ -45,6 +55,7 @@ class Edit extends StatelessWidget {
               ),
             SizedBox(height: 20),
             TextFormField(
+              controller: surnameController,
               decoration: InputDecoration(
                 labelText: 'Surname',
                 border: OutlineInputBorder(),
@@ -52,6 +63,7 @@ class Edit extends StatelessWidget {
             ),
             SizedBox(height: 20),
             TextFormField(
+              controller: usernameController,
               decoration: InputDecoration(
                 labelText: 'Username',
                 border: OutlineInputBorder(),
@@ -59,6 +71,7 @@ class Edit extends StatelessWidget {
             ),
             SizedBox(height: 20),
             TextFormField(
+              controller: passwordController,
               obscureText: true,
               decoration: InputDecoration(
                 labelText: 'Password',
@@ -67,14 +80,7 @@ class Edit extends StatelessWidget {
             ),
             SizedBox(height: 20),
             TextFormField(
-              obscureText: true,
-              decoration: InputDecoration(
-                labelText: 'Submit Password',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 20),
-            TextFormField(
+              controller: emailController,
               decoration: InputDecoration(
                 labelText: 'Email',
                 border: OutlineInputBorder(),
@@ -82,6 +88,7 @@ class Edit extends StatelessWidget {
             ),
             SizedBox(height: 20),
             TextFormField(
+              controller: phoneNumberController,
               decoration: InputDecoration(
                 labelText: 'PhoneNumber',
                 border: OutlineInputBorder(),
@@ -93,7 +100,42 @@ class Edit extends StatelessWidget {
               children: <Widget>[
                 ElevatedButton(
                   onPressed: () {
-                    // Add your registration logic here
+                    String name = nameController.text.trim();
+                    String surname = surnameController.text.trim();
+                    String username = usernameController.text.trim();
+                    String password = passwordController.text.trim();
+                    String email = emailController.text.trim();
+                    String phoneNumber = phoneNumberController.text.trim();
+
+                  if (name.isEmpty ||
+                      surname.isEmpty ||
+                      username.isEmpty ||
+                      password.isEmpty ||
+                      email.isEmpty ||
+                      phoneNumber.isEmpty) {
+                    showDialog(
+                    context: context,
+                    builder: (context) {
+                    return AlertDialog(
+                      title: Text('แจ้งเตือน'),
+                      content: Text('กรุณากรอกข้อมูลให้ครบทุกช่อง'),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                        child: Text('ตกลง'),
+                        ),
+                      ],
+                    );
+                    },
+                    );
+                    } else {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => LessonPage()),
+                        );
+                    }
                   },
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
@@ -105,7 +147,10 @@ class Edit extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    // Add your registration logic here
+                     Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => LessonPage()), // เปลี่ยนเป็น MyApp() หรือหน้าหลักของแอพพลิเคชันของคุณ
+                  );
                   },
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
